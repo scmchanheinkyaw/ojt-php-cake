@@ -21,10 +21,10 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Route\DashedRoute;
 
-return static function (RouteBuilder $routes) {
+return function (RouteBuilder $routes) {
     /*
      * The default class to use for all routes
      *
@@ -50,7 +50,7 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+        $builder->connect('/', ['controller' => 'Students', 'action' => 'index']);
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
@@ -74,18 +74,18 @@ return static function (RouteBuilder $routes) {
     });
 
     /*
-     * If you need a different set of middleware or none at all,
-     * open new scope and define routes there.
-     *
-     * ```
-     * $routes->scope('/api', function (RouteBuilder $builder) {
-     *     // No $builder->applyMiddleware() here.
-     *
-     *     // Parse specified extensions from URLs
-     *     // $builder->setExtensions(['json', 'xml']);
-     *
-     *     // Connect API actions here.
-     * });
-     * ```
-     */
+ * If you need a different set of middleware or none at all,
+ * open new scope and define routes there.
+ *
+ * ```
+ * $routes->scope('/api', function (RouteBuilder $builder) {
+ *     // No $builder->applyMiddleware() here.
+ *
+ *     // Parse specified extensions from URLs
+ *     // $builder->setExtensions(['json', 'xml']);
+ *
+ *     // Connect API actions here.
+ * });
+ * ```
+ */
 };
