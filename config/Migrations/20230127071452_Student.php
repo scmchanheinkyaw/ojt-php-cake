@@ -18,6 +18,7 @@ class Student extends AbstractMigration
         $studentTable->addColumn('name', 'string');
         $studentTable->addColumn('email', 'string');
         $studentTable->addColumn('phone', 'string');
+        $studentTable->addColumn('image', 'string');
         $studentTable->create();
     }
 }

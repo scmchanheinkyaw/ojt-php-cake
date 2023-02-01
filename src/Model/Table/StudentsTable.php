@@ -46,23 +46,73 @@ class StudentsTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator): Validator
+    public function validationStore(Validator $validator): Validator
     {
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->requirePresence('name', 'create')
+            ->requirePresence('name')
             ->notEmptyString('name');
 
         $validator
             ->email('email')
-            ->requirePresence('email', 'create')
+            ->requirePresence('email')
             ->notEmptyString('email');
 
         $validator
             ->integer('phone')
-            ->requirePresence('phone', 'create')
+            ->requirePresence('phone')
             ->notEmptyString('phone');
+
+        $validator
+            ->allowEmptyFile('file')
+            ->notEmptyString('file')
+            ->add('file', [
+                'mimeType' => [
+                    'rule' => ['mimeType', ['image/jpg', 'image/png', 'image/jpeg']],
+                    'message' => 'Please upload only jpg,jpeg and png.',
+
+                ],
+                'filesize' => [
+                    'rule' => ['filesize', '<=', '1MB'],
+                    'message' => 'Image file size must be less than 1MB.',
+                ],
+            ]);
+
+        return $validator;
+    }
+
+    public function validationUpdate(Validator $validator): Validator
+    {
+        $validator
+            ->scalar('name')
+            ->maxLength('name', 255)
+            ->requirePresence('name')
+            ->notEmptyString('name');
+
+        $validator
+            ->email('email')
+            ->requirePresence('email')
+            ->notEmptyString('email');
+
+        $validator
+            ->integer('phone')
+            ->requirePresence('phone')
+            ->notEmptyString('phone');
+
+        $validator
+            ->allowEmptyFile('file')
+            ->add('file', [
+                'mimeType' => [
+                    'rule' => ['mimeType', ['image/jpg', 'image/png', 'image/jpeg']],
+                    'message' => 'Please upload only jpg,jpeg and png.',
+
+                ],
+                'filesize' => [
+                    'rule' => ['filesize', '<=', '1MB'],
+                    'message' => 'Image file size must be less than 1MB.',
+                ],
+            ]);
 
         return $validator;
     }
