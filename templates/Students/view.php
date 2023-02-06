@@ -8,6 +8,10 @@
                     <td><?=$student->name?></td>
                 </tr>
                 <tr>
+                    <th><?=__('Major')?></th>
+                    <td><?=$student->major->name?></td>
+                </tr>
+                <tr>
                     <th><?=__('Email')?></th>
                     <td><?=$student->email?></td>
                 </tr>

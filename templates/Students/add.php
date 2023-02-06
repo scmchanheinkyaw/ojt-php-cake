@@ -13,6 +13,7 @@
 <?php
 echo @$this->Form->control('file', ['type' => 'file', 'label' => 'Student Photo']);
 echo $this->Form->control('name');
+echo $this->Form->control('major_id', ['options' => $majors]);
 echo $this->Form->control('email');
 echo $this->Form->control('phone');
 ?>
