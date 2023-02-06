@@ -25,7 +25,7 @@
                     <td><?=$student->id?></td>
                     <td><?=$student->name?></td>
                     <td><?=$student->email?></td>
-                    <td><?=$this->Html->image($student->image, ['style' => 'width:100px; height:50px;'])?></td>
+                    <td><?=$this->Html->image($student->image, ['style' => 'width:100px; height:auto; object-fit: cover;'])?></td>
                     <td><?=$student->phone?></td>
                     <td class="actions">
                         <?=$this->Html->link(__('View'), ['action' => 'view', $student->id])?>

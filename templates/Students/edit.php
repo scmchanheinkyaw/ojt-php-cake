@@ -13,7 +13,7 @@
 
                 <?php
 echo @$this->Form->control('file', ['type' => 'file', 'label' => 'Student Photo']);
-echo $this->Html->image($student->image, ['style' => 'width:100px; height:50px;']);
+echo $this->Html->image($student->image, ['style' => 'width:100px; height:100px; object-fix:cover;']);
 echo $this->Form->control('name');
 echo $this->Form->control('email');
 echo $this->Form->control('phone');

@@ -48,22 +48,17 @@ class StudentsController extends AppController
 
     public function edit($id = null)
     {
-        $student = $this->Students->get($id, [
-            'contain' => [],
-        ]);
+        $student = $this->Students->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-
             $student = $this->Students->patchEntity($student, $this->request->getData(), ['validate' => 'update']);
-
             $fileobject = $this->request->getData('file');
-            if ($fileobject) {
-                $uploadPath = WWW_ROOT . 'img/';
-                $fileName = uniqid() . $fileobject->getClientFilename();
-                $destination = $uploadPath . $fileName;
-                if ($fileName) {
-                    $fileobject->moveTo($destination);
-                    $student->image = $fileName;
-                }
+            $uploadPath = WWW_ROOT . 'img/';
+            $fileName = $fileobject->getClientFilename();
+            $destination = $uploadPath . $fileName;
+            if ($fileName) {
+                unlink($uploadPath . $student->image);
+                $fileobject->moveTo($destination);
+                $student->image = $fileName;
             }
 
             if ($this->Students->save($student)) {
