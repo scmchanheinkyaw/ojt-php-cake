@@ -38,6 +38,13 @@ class StudentsTable extends Table
         $this->setTable('students');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Majors', [
+            'foreignKey' => 'major_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**
@@ -53,6 +60,11 @@ class StudentsTable extends Table
             ->maxLength('name', 255)
             ->requirePresence('name')
             ->notEmptyString('name');
+
+        $validator
+            ->integer('major_id')
+            ->requirePresence('major_id')
+            ->notEmptyString('major_id');
 
         $validator
             ->email('email')
@@ -99,6 +111,11 @@ class StudentsTable extends Table
             ->integer('phone')
             ->requirePresence('phone')
             ->notEmptyString('phone');
+
+        $validator
+            ->integer('major_id')
+            ->requirePresence('major_id')
+            ->notEmptyString('major_id');
 
         $validator
             ->allowEmptyFile('file')

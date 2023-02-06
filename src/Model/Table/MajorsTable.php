@@ -1,10 +1,8 @@
 <?php
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -42,6 +40,8 @@ class MajorsTable extends Table
         $this->setTable('majors');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->hasMany('Students', [
             'foreignKey' => 'major_id',

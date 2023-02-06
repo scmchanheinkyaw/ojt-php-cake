@@ -13,6 +13,7 @@
                 <tr>
                     <th>id</th>
                     <th>name</th>
+                    <th>major</th>
                     <th>email</th>
                     <th>Image</th>
                     <th>phone</th>
@@ -24,6 +25,7 @@
                 <tr>
                     <td><?=$student->id?></td>
                     <td><?=$student->name?></td>
+                    <td><?=$student->major->name?></td>
                     <td><?=$student->email?></td>
                     <td><?=$this->Html->image($student->image, ['style' => 'width:100px; height:auto; object-fit: cover;'])?></td>
                     <td><?=$student->phone?></td>
