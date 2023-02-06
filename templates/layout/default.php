@@ -23,7 +23,11 @@ $cakeDescription = 'CakePHP: Student Management';
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?=$this->Url->build('/students')?>"><span>Student</span>Management</a>
+            <a href="<?=$this->Url->build('/')?>"><span>Student</span>Management</a>
+        </div>
+        <div class="top-nav-links">
+            <a rel="noopener" href="/students">Students</a>
+            <a rel="noopener" href="/majors">Majors</a>
         </div>
     </nav>
     <main class="main">

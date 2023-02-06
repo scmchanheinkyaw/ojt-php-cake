@@ -25,7 +25,17 @@ class StudentsController extends AppController
     {
         $student = $this->Students->newEmptyEntity();
         if ($this->request->is('post')) {
-            $student = $this->Students->patchEntity($student, $this->request->getData());
+            $student = $this->Students->patchEntity($student, $this->request->getData(), ['validate' => 'store']);
+
+            $fileobject = $this->request->getData('file');
+            $uploadPath = WWW_ROOT . 'img/';
+            $fileName = $fileobject->getClientFilename();
+            $destination = $uploadPath . $fileName;
+            if ($fileName) {
+                $fileobject->moveTo($destination);
+                $student->image = $fileName;
+            }
+
             if ($this->Students->save($student)) {
                 $this->Flash->success(__('The student has been saved.'));
 
@@ -38,11 +48,19 @@ class StudentsController extends AppController
 
     public function edit($id = null)
     {
-        $student = $this->Students->get($id, [
-            'contain' => [],
-        ]);
+        $student = $this->Students->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $student = $this->Students->patchEntity($student, $this->request->getData());
+            $student = $this->Students->patchEntity($student, $this->request->getData(), ['validate' => 'update']);
+            $fileobject = $this->request->getData('file');
+            $uploadPath = WWW_ROOT . 'img/';
+            $fileName = $fileobject->getClientFilename();
+            $destination = $uploadPath . $fileName;
+            if ($fileName) {
+                unlink($uploadPath . $student->image);
+                $fileobject->moveTo($destination);
+                $student->image = $fileName;
+            }
+
             if ($this->Students->save($student)) {
                 $this->Flash->success(__('The student has been saved.'));
 
