@@ -29,10 +29,9 @@ class StudentsController extends AppController
 
             $fileobject = $this->request->getData('file');
             $uploadPath = WWW_ROOT . 'img/';
-            $fileName = $fileobject->getClientFilename();
-            $destination = $uploadPath . $fileName;
+            $fileName = uniqid() . '-' . $fileobject->getClientFilename();
             if ($fileName) {
-                $fileobject->moveTo($destination);
+                $fileobject->moveTo($uploadPath . $fileName);
                 $student->image = $fileName;
             }
 
@@ -53,11 +52,10 @@ class StudentsController extends AppController
             $student = $this->Students->patchEntity($student, $this->request->getData(), ['validate' => 'update']);
             $fileobject = $this->request->getData('file');
             $uploadPath = WWW_ROOT . 'img/';
-            $fileName = $fileobject->getClientFilename();
-            $destination = $uploadPath . $fileName;
+            $fileName = uniqid() . '-' . $fileobject->getClientFilename();
             if ($fileName) {
                 unlink($uploadPath . $student->image);
-                $fileobject->moveTo($destination);
+                $fileobject->moveTo($uploadPath . $fileName);
                 $student->image = $fileName;
             }
 
