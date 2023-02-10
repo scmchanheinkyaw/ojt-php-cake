@@ -1,12 +1,6 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Major $major
- */
-?>
 <div class="row">
-    <div class="column-responsive column-100">
-        <div class="majors form content">
+<div class="column-responsive column-100">
+        <div class="students form content">
 <?php
 echo $this->Html->css('style');
 $myTemplates = [
@@ -14,11 +8,12 @@ $myTemplates = [
 ];
 $this->Form->setTemplates($myTemplates);
 ?>
-            <?=$this->Form->create($major)?>
+            <?=$this->Form->create($check_user, ['type' => 'post'])?>
             <fieldset>
-                <legend><?=__('Add Major')?></legend>
-                <?php
-echo $this->Form->control('name');
+                <legend><?=__('Please Login')?></legend>
+<?php
+echo $this->Form->control('email');
+echo $this->Form->control('password');
 ?>
             </fieldset>
             <?=$this->Form->button(__('Submit'))?>

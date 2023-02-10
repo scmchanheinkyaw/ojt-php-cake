@@ -19,6 +19,7 @@ $cakeDescription = 'CakePHP: Student Management';
     <?=$this->fetch('meta')?>
     <?=$this->fetch('css')?>
     <?=$this->fetch('script')?>
+
 </head>
 <body>
     <nav class="top-nav">
@@ -28,6 +29,9 @@ $cakeDescription = 'CakePHP: Student Management';
         <div class="top-nav-links">
             <a rel="noopener" href="/students">Students</a>
             <a rel="noopener" href="/majors">Majors</a>
+            <?php if ($user_session ?? null) {?>
+            <a rel="noopener" href="/logout">Logout</a>
+            <?php }?>
         </div>
     </nav>
     <main class="main">

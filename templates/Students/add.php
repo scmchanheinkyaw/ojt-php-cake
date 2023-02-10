@@ -7,6 +7,13 @@
 <div class="row">
 <div class="column-responsive column-100">
         <div class="students form content">
+<?php
+echo $this->Html->css('style');
+$myTemplates = [
+    'error' => '<div class="text-danger">{{content}}</div>',
+];
+$this->Form->setTemplates($myTemplates);
+?>
             <?=$this->Form->create($student, ['type' => 'file'])?>
             <fieldset>
                 <legend><?=__('Add Student')?></legend>

@@ -52,6 +52,9 @@ return function (RouteBuilder $routes) {
          */
         $builder->connect('/', ['controller' => 'Students', 'action' => 'index']);
 
+        $builder->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+        $builder->connect('/register', ['controller' => 'Users', 'action' => 'register']);
+        $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */

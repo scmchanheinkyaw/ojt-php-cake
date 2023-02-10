@@ -29,11 +29,12 @@ class StudentsController extends AppController
             $student = $this->Students->patchEntity($student, $this->request->getData(), ['validate' => 'store']);
 
             $fileobject = $this->request->getData('file');
-            $uploadPath = WWW_ROOT . 'img/';
-            $fileName = uniqid() . '-' . $fileobject->getClientFilename();
+            $fileName = $fileobject->getClientFilename();
             if ($fileName) {
-                $fileobject->moveTo($uploadPath . $fileName);
-                $student->image = $fileName;
+                $uploadPath = WWW_ROOT . 'img/';
+                $uniquefileName = uniqid() . '-' . $fileName;
+                $fileobject->moveTo($uploadPath . $uniquefileName);
+                $student->image = $uniquefileName;
             }
 
             if ($this->Students->save($student)) {
@@ -53,12 +54,13 @@ class StudentsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $student = $this->Students->patchEntity($student, $this->request->getData(), ['validate' => 'update']);
             $fileobject = $this->request->getData('file');
-            $uploadPath = WWW_ROOT . 'img/';
-            $fileName = uniqid() . '-' . $fileobject->getClientFilename();
+            $fileName = $fileobject->getClientFilename();
             if ($fileobject->getClientFilename()) {
+                $uploadPath = WWW_ROOT . 'img/';
+                $uniqueFileName = uniqid() . '-' . $fileName;
                 unlink($uploadPath . $student->image);
-                $fileobject->moveTo($uploadPath . $fileName);
-                $student->image = $fileName;
+                $fileobject->moveTo($uploadPath . $uniqueFileName);
+                $student->image = $uniqueFileName;
             } else {
                 $student->image = $student->image;
             }
