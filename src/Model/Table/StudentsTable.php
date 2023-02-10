@@ -59,26 +59,26 @@ class StudentsTable extends Table
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name')
-            ->notEmptyString('name');
+            ->notEmptyString('name', 'This name field cannot be empty!');
 
         $validator
             ->integer('major_id')
             ->requirePresence('major_id')
-            ->notEmptyString('major_id');
+            ->notEmptyString('major_id', 'This major field cannot be empty!');
 
         $validator
             ->email('email')
             ->requirePresence('email')
-            ->notEmptyString('email');
+            ->notEmptyString('email', 'This email field cannot be empty!');
 
         $validator
             ->integer('phone')
             ->requirePresence('phone')
-            ->notEmptyString('phone');
+            ->notEmptyString('phone', 'This phone field cannot be empty!');
 
         $validator
             ->allowEmptyFile('file')
-            ->notEmptyString('file')
+            ->notEmptyString('file', 'This file field cannot be empty!')
             ->add('file', [
                 'mimeType' => [
                     'rule' => ['mimeType', ['image/jpg', 'image/png', 'image/jpeg']],

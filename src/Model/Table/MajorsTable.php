@@ -59,8 +59,8 @@ class MajorsTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->requirePresence('name')
+            ->notEmptyString('name', 'This name field cannot be empty!');
 
         return $validator;
     }
